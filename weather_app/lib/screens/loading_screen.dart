@@ -7,11 +7,11 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getPosition() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.low);
-    print(position);
-  }
+  // void getPosition() async {
+  //   Position position = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.low);
+  //   print(position);
+  // }
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -41,12 +41,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
       body: Center(
         // ignore: deprecated_member_use
         child: RaisedButton(
-          onPressed: () {
+          onPressed: () async {
             //getPosition();
-            _determinePosition();
+            Position position = await _determinePosition();
+            print(position);
             //Get the current location
           },
-          child: Text('Get Location'),
+          child: const Text('Get Location'),
         ),
       ),
     );
