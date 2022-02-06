@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,41 +8,11 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  double? latitude;
-  double? longitude;
   void getPosition() async {
-    Future<Position> _determinePosition() async {
-      bool serviceEnabled;
-      LocationPermission permission;
-      serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      if (!serviceEnabled) {
-        await Geolocator.openLocationSettings();
-        return Future.error('Location services are disabled.');
-      }
-      permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          return Future.error('Location permissions are denied');
-        }
-      }
-      if (permission == LocationPermission.deniedForever) {
-        return Future.error(
-            'Location permissions are permanently denied, we cannot request permissions.');
-      }
-      return await Geolocator.getCurrentPosition();
-    }
-
-    Position position = await _determinePosition();
-
-    latitude = position.latitude;
-    longitude = position.longitude;
-    print(position);
-
-    // Location location = Location();
-    // location.getCurrentLocation();
-    // print(location.latitude);
-    // print(location.longitude);
+    Location location = Location();
+    location.getCurrentLocation();
+    print(location.latitude);
+    print(location.longitude);
   }
 
   Future<http.Response> getData() {
@@ -82,7 +51,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     getData();
-    getPosition();
     return const Scaffold();
   }
 }
