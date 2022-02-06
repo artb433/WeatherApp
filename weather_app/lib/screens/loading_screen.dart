@@ -13,6 +13,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     location.getCurrentLocation();
     print(location.latitude);
     print(location.longitude);
+    print(location);
   }
 
   // Future<Position> _determinePosition() async {
