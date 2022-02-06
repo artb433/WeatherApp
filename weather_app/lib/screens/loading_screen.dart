@@ -13,7 +13,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     location.getCurrentLocation();
     print(location.latitude);
     print(location.longitude);
-    print(location);
+    print('This is your coordinates $location');
   }
 
   // Future<Position> _determinePosition() async {
