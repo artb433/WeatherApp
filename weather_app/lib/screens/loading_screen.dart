@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/services/location.dart';
 
@@ -13,7 +14,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     location.getCurrentLocation();
     print(location.latitude);
     print(location.longitude);
-    print('This is your coordinates $location');
   }
 
   // Future<Position> _determinePosition() async {
