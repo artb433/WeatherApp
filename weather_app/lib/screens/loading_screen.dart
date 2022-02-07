@@ -44,11 +44,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
+    getPosition();
   }
 
   @override
   Widget build(BuildContext context) {
-    getPosition();
     getData();
     return const Scaffold();
   }
