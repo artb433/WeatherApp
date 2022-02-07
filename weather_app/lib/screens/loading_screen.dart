@@ -16,8 +16,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getData() async {
-    var response =
-        await http.get('https://jsonplaceholder.typicode.com/albums/1');
+    var response = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
   }
 
   // Future<Position> _determinePosition() async {
@@ -45,13 +47,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    getPosition();
+    // getPosition();
   }
 
   @override
   Widget build(BuildContext context) {
     getData();
-    getPosition();
     return const Scaffold();
   }
 }
