@@ -21,9 +21,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (response.statusCode == 200) {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
-    } else {
+    } else if (response.statusCode >= 400) {
       print('Response status: ${response.statusCode}');
       print('error fetching code');
+    } else {
+      print('server or other error');
     }
   }
 
