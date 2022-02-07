@@ -25,11 +25,14 @@ class Location {
           return Future.error(
               'Location permissions are permanently denied, we cannot request permissions.');
         }
-        return await Geolocator.getCurrentPosition();
+        return await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.best);
       }
 
       Position position = await _determinePosition();
+
       // Position position = await Geolocator.getCurrentPosition(
+      //     forceAndroidLocationManager: true,
       //     desiredAccuracy: LocationAccuracy.best);
 
       latitude = position.latitude;
