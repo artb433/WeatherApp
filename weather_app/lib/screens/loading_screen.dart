@@ -16,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getData() async {
-    http.Response =
+    var response =
         await http.get('https://jsonplaceholder.typicode.com/albums/1');
   }
 
@@ -51,6 +51,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     getData();
+    getPosition();
     return const Scaffold();
   }
 }
