@@ -29,6 +29,8 @@ class Location {
       }
 
       Position position = await _determinePosition();
+      // Position position = await Geolocator.getCurrentPosition(
+      //     desiredAccuracy: LocationAccuracy.best);
 
       latitude = position.latitude;
       longitude = position.longitude;
