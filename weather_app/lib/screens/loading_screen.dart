@@ -15,8 +15,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     print(location.longitude);
   }
 
-  Future<http.Response> getData() {
-    return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  void getData() async {
+    http.Response =
+        await http.get('https://jsonplaceholder.typicode.com/albums/1');
   }
 
   // Future<Position> _determinePosition() async {
