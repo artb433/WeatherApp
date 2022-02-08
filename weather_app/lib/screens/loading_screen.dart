@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -38,22 +39,27 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     // Location location = Location();
     // location.getCurrentLocation();
-    print('latitude: ${position.latitude}');
-    print('longitude : ${position.longitude}');
-    print(position);
+    //  print('latitude: ${position.latitude}');
+    //  print('longitude : ${position.longitude}');
+    //  print(position);
   }
 
   void getData() async {
     var response = await http.get(Uri.parse(
         'https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=b70c4fa4180775f57382edd3aae0ebdc'));
     if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      String data = response.body;
+
+      var lat = jsonDecode(response.body)[0]['lat'];
+      print(lat);
+
+      // print('Response status: ${response.statusCode}');
+      //print('Response body: ${response.body}');
     } else if (response.statusCode >= 400) {
-      print('Response status: ${response.statusCode}');
-      print('error fetching code');
+      //  print('Response status: ${response.statusCode}');
+      // print('error fetching code');
     } else {
-      print('server or other error');
+      // print('server or other error');
     }
   }
 

@@ -37,6 +37,7 @@ dependencies:
   geolocator: ^8.0.5
   geocoding: ^2.0.2
   http: ^0.13.4
+  convert: ^3.0.1
   
 
 dev_dependencies:
