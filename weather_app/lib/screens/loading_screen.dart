@@ -37,11 +37,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     Position position = await _determinePosition();
 
-    // Location location = Location();
-    // location.getCurrentLocation();
-    //  print('latitude: ${position.latitude}');
-    //  print('longitude : ${position.longitude}');
-    //  print(position);
+    Location location = Location();
+    location.getCurrentLocation();
+    print('latitude: ${position.latitude}');
+    print('longitude : ${position.longitude}');
+    print(position);
   }
 
   void getData() async {
@@ -50,16 +50,19 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (response.statusCode == 200) {
       String data = response.body;
 
+      var name = jsonDecode(response.body)[0]['name'];
+      print(name);
+
       var lat = jsonDecode(response.body)[0]['lat'];
       print(lat);
 
-      // print('Response status: ${response.statusCode}');
-      //print('Response body: ${response.body}');
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
     } else if (response.statusCode >= 400) {
-      //  print('Response status: ${response.statusCode}');
-      // print('error fetching code');
+      print('Response status: ${response.statusCode}');
+      print('error fetching code');
     } else {
-      // print('server or other error');
+      print('server or other error');
     }
   }
 
