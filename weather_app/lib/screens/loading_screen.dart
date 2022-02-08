@@ -44,8 +44,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getData() async {
-    var response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+    var response = await http.get(Uri.parse(
+        'https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=b70c4fa4180775f57382edd3aae0ebdc'));
     if (response.statusCode == 200) {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
