@@ -26,7 +26,7 @@ class Location {
               'Location permissions are permanently denied, we cannot request permissions.');
         }
         return await Geolocator.getCurrentPosition(
-            forceAndroidLocationManager: true,
+            forceAndroidLocationManager: false,
             desiredAccuracy: LocationAccuracy.best);
       }
 
