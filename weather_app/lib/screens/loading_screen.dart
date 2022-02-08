@@ -4,12 +4,17 @@ import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+const apiKey = 'b70c4fa4180775f57382edd3aae0ebdc';
+
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  double? latitude;
+  double? longitude;
+
   void getPosition() async {
     Future<Position> _determinePosition() async {
       bool serviceEnabled;
@@ -39,21 +44,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     Location location = Location();
     location.getCurrentLocation();
-    print('latitude: ${position.latitude}');
-    print('longitude : ${position.longitude}');
+    latitude = position.latitude;
+    longitude = position.longitude;
     print(position);
   }
 
   void getData() async {
     var response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=b70c4fa4180775f57382edd3aae0ebdc'));
+        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
     if (response.statusCode == 200) {
       String data = response.body;
 
-      var name = jsonDecode(response.body)[0]['name'];
+      String name = jsonDecode(data)[0]['name'];
       print(name);
 
-      var lat = jsonDecode(response.body)[0]['lat'];
+      double lat = jsonDecode(data)[0]['lat'];
       print(lat);
 
       print('Response status: ${response.statusCode}');
