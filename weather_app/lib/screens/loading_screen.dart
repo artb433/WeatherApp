@@ -56,15 +56,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
       var lat = jsonDecode(response.body)[0]['lat'];
       print(lat);
 
-      var temp = jsonDecode(response.body)[0]['temp'];
-      print(temp);
-
-      var condition = jsonDecode(response.body)[0]['condition'];
-      print(condition);
-
-      var city = jsonDecode(response.body)[0]['city'];
-      print(city);
-
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
     } else if (response.statusCode >= 400) {
