@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
-
+import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -43,8 +42,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     Position position = await _determinePosition();
 
-    // Location location = Location();
-    // location.getCurrentLocation();
+    Location location = Location();
+    location.getCurrentLocation();
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
