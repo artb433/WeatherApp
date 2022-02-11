@@ -47,6 +47,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
+
+    getData();
   }
 
   Future getData() async {
@@ -64,6 +66,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
       var condition = jsonDecode(data)['weather'][0]['id'];
       print(condition);
+
+      var name = jsonDecode(data)['name'];
+      print(name);
 
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
@@ -100,7 +105,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    // getPosition();
+    //getPosition();
   }
 
   @override
