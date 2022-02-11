@@ -47,8 +47,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
-
-    getData();
   }
 
   void getData() async {
@@ -56,7 +54,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
     print(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
-    print(response);
+    print(response.body);
 
     if (response.statusCode == 200) {
       String data = response.body;
@@ -76,7 +74,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
       print('server or other error');
     }
   }
-
   // Future<Position> _determinePosition() async {
   //   bool serviceEnabled;
   //   LocationPermission permission;
