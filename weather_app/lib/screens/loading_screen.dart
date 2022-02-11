@@ -47,6 +47,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
+
+    getData();
   }
 
   void getData() async {
