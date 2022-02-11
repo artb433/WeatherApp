@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/screens/location_screen.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = 'b70c4fa4180775f57382edd3aae0ebdc';
 
@@ -46,9 +48,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     // location.getCurrentLocation();
     latitude = position.latitude;
     longitude = position.longitude;
+    print('***');
     print(position);
 
     getData();
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LocationScreen(locationWeather: jsonDecode);
+    }));
   }
 
   Future getData() async {
@@ -110,15 +117,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    getData();
+    // getData();
     getPosition();
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            getPosition();
-          },
-          child: const Text('Get location'),
+        child: SpinKitWanderingCubes(
+          color: Colors.white,
+          size: 50.0,
         ),
       ),
     );
