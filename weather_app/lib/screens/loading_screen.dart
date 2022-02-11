@@ -49,7 +49,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     print(position);
   }
 
-  void getData() async {
+  Future getData() async {
     var response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
     print(
@@ -67,6 +67,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
+      return jsonDecode;
     } else if (response.statusCode >= 400) {
       print('Response status: ${response.statusCode}');
       print('error fetching code');
