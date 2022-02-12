@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weather_app/screens/location_screen.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = 'b70c4fa4180775f57382edd3aae0ebdc';
 
@@ -48,22 +46,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
     // location.getCurrentLocation();
     latitude = position.latitude;
     longitude = position.longitude;
-    print('***');
     print(position);
-
-    getData();
-
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen(locationWeather: jsonDecode);
-    }));
   }
 
-  Future getData() async {
+  void getData() async {
     var response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
     print(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
-    print(response.body);
+    print(response);
 
     if (response.statusCode == 200) {
       String data = response.body;
@@ -74,12 +65,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       var condition = jsonDecode(data)['weather'][0]['id'];
       print(condition);
 
-      var name = jsonDecode(data)['name'];
-      print(name);
-
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
-      return jsonDecode;
     } else if (response.statusCode >= 400) {
       print('Response status: ${response.statusCode}');
       print('error fetching code');
@@ -87,6 +74,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       print('server or other error');
     }
   }
+
   // Future<Position> _determinePosition() async {
   //   bool serviceEnabled;
   //   LocationPermission permission;
@@ -112,18 +100,20 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    //getPosition();
+    // getPosition();
   }
 
   @override
   Widget build(BuildContext context) {
-    // getData();
+    getData();
     getPosition();
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: SpinKitWanderingCubes(
-          color: Colors.white,
-          size: 50.0,
+        child: ElevatedButton(
+          onPressed: () {
+            getPosition();
+          },
+          child: const Text('Get location'),
         ),
       ),
     );

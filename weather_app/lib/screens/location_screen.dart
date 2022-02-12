@@ -3,8 +3,8 @@ import 'package:weather_app/utilities/constants.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({this.locationWeather});
-  final locationWeather;
+  // LocationScreen({this.locationWeather});
+  // final locationWeather;
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -18,7 +18,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.locationWeather);
+    //print(widget.locationWeather);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
