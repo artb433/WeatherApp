@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/screens/location_screen.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +16,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double? latitude;
   double? longitude;
 
-  void getPosition() async {
+  Future getPosition() async {
     Future<Position> _determinePosition() async {
       bool serviceEnabled;
       LocationPermission permission;
@@ -47,14 +48,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
+    print(
+        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+
+    getData();
   }
 
-  void getData() async {
+  Future getData() async {
     var response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
     print(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
-    print(response);
 
     if (response.statusCode == 200) {
       String data = response.body;
@@ -73,6 +77,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
     } else {
       print('server or other error');
     }
+
+    var weatherData = response.body;
+    print('weather data is $weatherData');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => LocationScreen(locationWeather: weatherData)),
+    );
   }
 
   // Future<Position> _determinePosition() async {
@@ -105,13 +118,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    getData();
+    //getData();
     getPosition();
     return Scaffold(
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            getPosition();
+            // getPosition();
           },
           child: const Text('Get location'),
         ),
