@@ -63,11 +63,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (response.statusCode == 200) {
       String data = response.body;
 
-      var temp = jsonDecode(data)['main']['temp'];
-      print(temp);
+      // var temp = jsonDecode(data)['main']['temp'];
+      // print(temp);
 
-      var condition = jsonDecode(data)['weather'][0]['id'];
-      print(condition);
+      // var condition = jsonDecode(data)['weather'][0]['id'];
+      // print(condition);
 
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
