@@ -69,6 +69,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
       // var condition = jsonDecode(data)['weather'][0]['id'];
       // print(condition);
 
+      // var country = jsonDecode(data)['name'];
+      // print(country);
+
       print('Response status: ${response.statusCode}');
       //  print('Response body: ${response.body}');
     } else if (response.statusCode >= 400) {
@@ -78,13 +81,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
       print('server or other error');
     }
 
-    var weatherData = response.body;
+    var weatherData = jsonDecode(response.body);
     print('weather data is $weatherData');
 
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => LocationScreen(locationWeather: weatherData)),
+          builder: (context) => LocationScreen(
+                locationWeather: weatherData,
+              )),
     );
   }
 

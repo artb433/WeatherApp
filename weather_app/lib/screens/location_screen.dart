@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/screens/loading_screen.dart';
 import 'package:weather_app/utilities/constants.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({this.locationWeather});
-  final locationWeather;
+  LocationScreen({Key? key, required this.locationWeather}) : super(key: key);
+  final dynamic locationWeather;
+
+  //double temperature = weatherData['main']['temp'];
+  // double condition=jsonDecode(weatherData)['weather'][0]['id'];
+  // String cityName=jsonDecode(locationWeather)['name'];
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -16,9 +23,18 @@ class _LocationScreenState extends State<LocationScreen> {
         desiredAccuracy: LocationAccuracy.low);
   }
 
+//  temperature = weatherData['main']['temp'];
+//  condition = weatherData['weather'][0]['id'];
+// cityName = weatherData['name'];
+
+// temperature= jsonDecode(locationWeather)['main']['temp'];
+// condition = jsonDecode(data)['weather'][0]['id'];
+// cityName = jsonDecode(data)['name'];
+
   @override
   Widget build(BuildContext context) {
     print(widget.locationWeather);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -89,3 +105,5 @@ class _LocationScreenState extends State<LocationScreen> {
 
 // var temp = jsonDecode(data)['main']['temp'];
 // var condition = jsonDecode(data)['weather'][0]['id'];
+//var country = jsonDecode(data)['name'];
+  
