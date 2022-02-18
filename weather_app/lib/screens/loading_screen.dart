@@ -81,7 +81,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       print('server or other error');
     }
 
-    var weatherData = jsonDecode(response.body);
+    var weatherData = await getData();
     print('weather data is $weatherData');
 
     Navigator.push(
