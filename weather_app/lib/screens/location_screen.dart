@@ -29,7 +29,8 @@ class _LocationScreenState extends State<LocationScreen> {
     condition = jsonDecode(weatherData)['weather'][0]['id'];
     country = jsonDecode(weatherData)['name'];
 
-    //var weatherIcon = weather.getWeatherIcon(condition);
+    var weatherIcon =
+        weather.getWeatherIcon(jsonDecode(weatherData)['weather'][0]['id']);
   }
 
   @override
