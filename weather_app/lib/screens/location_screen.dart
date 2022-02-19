@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/services/weather.dart';
 import 'package:weather_app/utilities/constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
@@ -17,26 +18,19 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  double? temperature;
+  var weather;
+  int? temperature;
   int? condition;
   String? country;
   void updateUI(dynamic weatherData) {
-    temperature = jsonDecode(weatherData)['main']['temp'];
+    WeatherModel weather = WeatherModel();
+    double temp = jsonDecode(weatherData)['main']['temp'];
+    temperature = temp.toInt();
     condition = jsonDecode(weatherData)['weather'][0]['id'];
     country = jsonDecode(weatherData)['name'];
+
+    //var weatherIcon = weather.getWeatherIcon(condition);
   }
-  // Future getPosition() async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //       desiredAccuracy: LocationAccuracy.low);
-  // }
-
-//  temperature = weatherData['main']['temp'];
-//  condition = weatherData['weather'][0]['id'];
-// cityName = weatherData['name'];
-
-// temperature= jsonDecode(locationWeather)['main']['temp'];
-// condition = jsonDecode(data)['weather'][0]['id'];
-// cityName = jsonDecode(data)['name'];
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +91,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "It's 🍦 time in $country!",
+                  "${weather.getWeatherIcon(condition)} in $country!",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),

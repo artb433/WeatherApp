@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/screens/location_screen.dart';
 import 'package:weather_app/services/location.dart';
@@ -125,13 +126,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     //getData();
     getPosition();
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // getPosition();
-          },
-          child: const Text('Get location'),
+        child: SpinKitWanderingCubes(
+          color: Colors.white,
+          size: 50.0,
         ),
       ),
     );
