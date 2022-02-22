@@ -49,8 +49,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     latitude = position.latitude;
     longitude = position.longitude;
     print(position);
-    print(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+    // print(
+    //     'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
 
     getData();
   }
