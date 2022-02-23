@@ -6,6 +6,7 @@ import 'package:weather_app/services/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+//const apiKey = 'b70c4fa4180775f57382edd3aae0ebdc';
 const apiKey = 'b70c4fa4180775f57382edd3aae0ebdc';
 
 class LoadingScreen extends StatefulWidget {
@@ -58,11 +59,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Future getData() async {
     var response = await http.get(Uri.parse(
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
-    print(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
+    //print( 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
 
     if (response.statusCode == 200) {
       String data = response.body;
+      //print(data);
 
       // var temp = jsonDecode(data)['main']['temp'];
       // print(temp);

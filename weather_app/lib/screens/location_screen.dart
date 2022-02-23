@@ -36,13 +36,13 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   void initState() {
     super.initState();
-    updateUI(widget.locationWeather);
+    // updateUI(widget.locationWeather);
   }
 
   @override
   Widget build(BuildContext context) {
-    updateUI(widget.locationWeather);
-
+    // updateUI(widget.locationWeather);
+    print(widget.locationWeather);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
