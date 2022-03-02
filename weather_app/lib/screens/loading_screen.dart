@@ -95,12 +95,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 
-  
-
   @override
   void initState() {
     super.initState();
-    // getPosition();
+    getPosition();
   }
 
   @override
