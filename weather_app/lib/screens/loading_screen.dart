@@ -18,7 +18,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   double? latitude;
   double? longitude;
 
-  Future getPosition() async {
+  void getPosition() async {
     Future<Position> _determinePosition() async {
       bool serviceEnabled;
       LocationPermission permission;
@@ -54,6 +54,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
     //     'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
 
     getData();
+    var weatherData = await getData();
+    print('The Weather data is $weatherData');
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => LocationScreen(
+                locationWeather: weatherData,
+              )),
+    );
   }
 
   Future getData() async {
@@ -63,38 +73,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     if (response.statusCode == 200) {
       String data = response.body;
-      //print(data);
-
-      // var temp = jsonDecode(data)['main']['temp'];
+      var temp = jsonDecode(data)['main']['temp'];
       // print(temp);
-
-      // var condition = jsonDecode(data)['weather'][0]['id'];
-      // print(condition);
-
-      // var country = jsonDecode(data)['name'];
-      // print(country);
-
-      print('Response status: ${response.statusCode}');
-      // Nooooooooooooooooooooooooooooooooooooooooooooottttttttttttttttttttttttteeeeeeeee
-      //print('Response body: ${response.body}');
-    } else if (response.statusCode >= 400) {
-      print('Response status: ${response.statusCode}');
-      print('error fetching code');
+      // print(data);
+      return jsonDecode(data);
     } else {
-      print('server or other error');
+      print(response.statusCode);
     }
-
-    var weatherData = await getData();
-    //print('weather data is $weatherData');
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => LocationScreen(
-                locationWeather: weatherData,
-              )),
-    );
-    return response;
   }
 
   @override
