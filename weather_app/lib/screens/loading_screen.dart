@@ -91,7 +91,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     //getData();
-    getPosition();
+    // getPosition();
     return const Scaffold(
       body: Center(
         child: SpinKitWanderingCubes(
