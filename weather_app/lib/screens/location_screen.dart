@@ -24,6 +24,7 @@ class _LocationScreenState extends State<LocationScreen> {
     temperature = temp.toInt();
     condition = jsonDecode(weatherData)['weather'][0]['id'];
     country = jsonDecode(weatherData)['name'];
+    print(temp);
 
     var weatherIcon =
         weather.getWeatherIcon(jsonDecode(weatherData)['weather'][0]['id']);

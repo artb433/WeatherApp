@@ -75,7 +75,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       // print(country);
 
       print('Response status: ${response.statusCode}');
-      //  print('Response body: ${response.body}');
+      // Nooooooooooooooooooooooooooooooooooooooooooooottttttttttttttttttttttttteeeeeeeee
+      //print('Response body: ${response.body}');
     } else if (response.statusCode >= 400) {
       print('Response status: ${response.statusCode}');
       print('error fetching code');
@@ -84,7 +85,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     }
 
     var weatherData = await getData();
-    print('weather data is $weatherData');
+    //print('weather data is $weatherData');
 
     Navigator.push(
       context,
@@ -93,6 +94,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 locationWeather: weatherData,
               )),
     );
+    return response;
   }
 
   @override
