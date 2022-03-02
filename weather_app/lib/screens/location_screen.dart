@@ -9,10 +9,6 @@ class LocationScreen extends StatefulWidget {
   final locationWeather;
   const LocationScreen({Key? key, this.locationWeather}) : super(key: key);
 
-  //double temperature = weatherData['main']['temp'];
-  // double condition=jsonDecode(weatherData)['weather'][0]['id'];
-  // String cityName=jsonDecode(locationWeather)['name'];
-
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
