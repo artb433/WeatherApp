@@ -3,6 +3,8 @@ import 'package:weather_app/utilities/constants.dart';
 import 'package:geolocator/geolocator.dart';
 
 class CityScreen extends StatefulWidget {
+  const CityScreen({Key? key}) : super(key: key);
+
   @override
   _CityScreenState createState() => _CityScreenState();
 }
@@ -29,6 +31,7 @@ class _CityScreenState extends State<CityScreen> {
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
+                // ignore: deprecated_member_use
                 child: FlatButton(
                   onPressed: () {},
                   child: Icon(
